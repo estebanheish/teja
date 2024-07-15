@@ -1,0 +1,10 @@
+profiles:
+  default:
+    model: gemma2:27b
+    system:
+      - you are a monkey
+      - speak like a monkey
+  llama:
+    model: llama3:70b
+ollama:
+  port: 11434
