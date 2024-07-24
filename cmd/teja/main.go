@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"strings"
 
 	"teja/internal/config"
 	"teja/internal/ollama"
@@ -55,10 +56,7 @@ func ModelNew() model {
 }
 
 func (m model) Init() tea.Cmd {
-	return tea.Batch(
-		tea.EnterAltScreen,
-		textarea.Blink,
-	)
+	return tea.EnterAltScreen
 }
 
 type Stream struct {
@@ -110,6 +108,9 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		case tea.KeyEnter:
 			prompt := m.Input.Value()
+			if strings.TrimSpace(prompt) == "" {
+				return m, cmd
+			}
 			m.Input.Reset()
 			m.Conversation = append(m.Conversation, ollama.Message{Role: "user", Content: prompt})
 			m.Conversation = append(m.Conversation, ollama.Message{Role: "assistant", Content: ""})

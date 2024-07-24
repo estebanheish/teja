@@ -22,7 +22,7 @@
       {pkgs}: {
         default = pkgs.buildGoModule {
           pname = "teja";
-          version = "0.0.1";
+          version = "0.0.2";
           src = ./.;
           vendorHash = "sha256-AvSfxnMRrGRaTmozPwS8FEthFPJXNPoGtt41MO6J5fE=";
         };
